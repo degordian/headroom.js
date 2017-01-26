@@ -10,7 +10,8 @@
         tolerance: '=',
         offset: '=',
         classes: '=',
-        scroller: '@'
+        scroller: '@',
+        instance: '='
       },
       link: function ($scope, $element) {
         var options = {};
@@ -21,9 +22,9 @@
         if ($scope.scroller) {
           options.scroller = document.querySelector($scope.scroller);
         }
-        var headroom = new HeadroomService($element[0], options).init();
+        $scope.instance = new HeadroomService($element[0], options).init();
         $scope.$on('$destroy', function(){
-          headroom.destroy();
+          $scope.instance.destroy();
         });
       }
     };
